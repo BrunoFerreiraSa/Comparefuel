@@ -1,0 +1,5 @@
+<resources>
+   <string name="app_name" >Gasolina x Álcool</string>
+   <string name="precogaso" >Preço da Gasolina</string>
+   <string name="precoalc">Preço do Álcool</string>
+</resources>
