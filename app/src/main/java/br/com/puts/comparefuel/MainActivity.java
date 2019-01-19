@@ -9,30 +9,34 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.DecimalFormat;
+
 public class MainActivity extends AppCompatActivity {
 
     private EditText gas;
     private EditText alc;
     private ImageView img;
-    public Button btn;
+    public Button btn1;
     public TextView txt;
+    public TextView txt1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-            gas = (EditText)findViewById(R.id.valorGas);
-            alc = (EditText)findViewById(R.id.valorAlc);
-            img = (ImageView) findViewById(R.id.imageView);
-            btn = (Button) findViewById(R.id.button);
-            txt = (TextView) findViewById(R.id.txtaviso);
+            gas = findViewById(R.id.valorGas);
+            alc = findViewById(R.id.valorAlc);
+            img = findViewById(R.id.imageView);
+            btn1 = findViewById(R.id.btnCompare);
+            txt = findViewById(R.id.txtaviso);
+            txt1 = findViewById(R.id.txtaviso1);
 
             //Adiciona a mascara aos valores.
             //gas.addTextChangedListener(new MascaraMonetaria(gas));
             //alc.addTextChangedListener(new MascaraMonetaria(alc));
 
-            btn.setOnClickListener(new View.OnClickListener() {
+            btn1.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     compare(v);
@@ -54,14 +58,29 @@ public class MainActivity extends AppCompatActivity {
 
             double ind = (g * 0.70);
 
-            if (ind <= a) {
+            DecimalFormat nf = new DecimalFormat("#.00");
+
+            if (ind < a) {
+                String text = "O alcool tem que esta em R$ " + nf.format(ind);
                 img.setImageResource(R.drawable.gasolina);
                 txt.setText(aviso);
-            } else {
-                img.setImageResource(R.drawable.alcool);
+                txt1.setText(text);
+            } else if (ind == a){
+                String text = "O alcool tem que esta em R$ " + nf.format(ind);
+                img.setImageResource(R.drawable.gasolina);
                 txt.setText(aviso);
+                txt1.setText(text);
+            }else {
+                img.setImageResource(R.drawable.alcool);
+
+                Double result = ((ind * g)/100) + 1;
+
+                String text = "A gasolina tem que esta em R$ " + nf.format(ind * result);
+                txt.setText(aviso);
+                txt1.setText(text);
             }
 
         }
+
     }
 }

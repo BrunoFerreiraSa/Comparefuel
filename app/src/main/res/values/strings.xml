@@ -1,7 +1,9 @@
 <resources>
-   <string name="app_name" >Gasolina x Álcool</string>
+   <string name="app_name" >Flex</string>
    <string name="precogaso" >Preço da Gasolina</string>
    <string name="precoalc">Preço do Álcool</string>
    <string name="botton">Compare</string>
    <string name="aviso">Melhor custo benefício.</string>
+    <string name="voltar">Voltar</string>
+   <string name="Simbol">R$</string>
 </resources>
